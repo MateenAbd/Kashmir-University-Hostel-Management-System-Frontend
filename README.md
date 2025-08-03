@@ -31,8 +31,8 @@ Modern, full-featured hostel management web application for universities and col
 
 ### Installation
 ```sh
-git clone <YOUR_GIT_URL>
-cd hostel-management-system-frontend
+git clone [https://github.com/MateenAbd/Kashmir-University-Hostel-Management-System-Frontend.git](https://github.com/MateenAbd/Kashmir-University-Hostel-Management-System-Frontend.git)
+cd Kashmir-University-Hostel-Management-System-Frontend-main
 npm install
 ```
 
