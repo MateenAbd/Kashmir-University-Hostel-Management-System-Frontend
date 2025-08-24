@@ -191,11 +191,7 @@ const RegistrationRequests = () => {
                             <div>
                               <label className="text-sm font-medium">Photo</label>
                               <div className="mt-2">
-                                <img 
-                                  src={`http://localhost:8080/uploads/${request.photoUrl}`} 
-                                  alt="Student Photo"
-                                  className="w-32 h-32 object-cover rounded-lg border"
-                                />
+                                <StudentPhotoLoader photoUrl={request.photoUrl} />
                               </div>
                             </div>
                           )}
@@ -277,6 +273,43 @@ const RegistrationRequests = () => {
         )}
       </div>
     </div>
+  );
+};
+
+// New component for loading student photo with auth (uses blob fetching to avoid 401)
+const StudentPhotoLoader: React.FC<{ photoUrl: string }> = ({ photoUrl }) => {
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadImage = async () => {
+      try {
+        const response = await adminApi.getStudentPhoto(photoUrl);
+        const blob = response.data;
+        const url = URL.createObjectURL(blob);
+        setImageSrc(url);
+      } catch (err) {
+        console.error('Failed to load photo:', err);
+        setError('Unable to load photo');
+      }
+    };
+
+    loadImage();
+
+    return () => {
+      if (imageSrc) URL.revokeObjectURL(imageSrc);
+    };
+  }, [photoUrl]);
+
+  if (error) return <p className="text-destructive text-sm">{error}</p>;
+  if (!imageSrc) return <p className="text-muted-foreground text-sm">Loading photo...</p>;
+
+  return (
+    <img 
+      src={imageSrc} 
+      alt="Student Photo"
+      className="w-32 h-32 object-cover rounded-lg border"
+    />
   );
 };
 

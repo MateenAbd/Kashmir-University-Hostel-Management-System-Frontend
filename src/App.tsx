@@ -77,35 +77,6 @@ const App = () => (
               {/* Monitor routes */}
               <Route path="monitor/absence-requests" element={<ProtectedRoute requiredRole="STUDENT" requireMonitor={true}><MonitorEarlyAbsenceRequests /></ProtectedRoute>} />
               
-              {/* Warden routes */}
-              {/* <Route path="warden/*" element={
-                <ProtectedRoute requiredRole="WARDEN">
-                  <div className="space-y-6">
-                    <h1 className="text-2xl font-bold">Warden Panel</h1>
-                    <p className="text-muted-foreground">Warden features coming soon...</p>
-                  </div>
-                </ProtectedRoute>
-              } /> */}
-              
-              {/* Student routes */}
-              {/* <Route path="student/*" element={
-                <ProtectedRoute requiredRole="STUDENT">
-                  <div className="space-y-6">
-                    <h1 className="text-2xl font-bold">Student Panel</h1>
-                    <p className="text-muted-foreground">Student features coming soon...</p>
-                  </div>
-                </ProtectedRoute>
-              } /> */}
-              
-              {/* Monitor routes */}
-              {/* <Route path="monitor/*" element={
-                <ProtectedRoute requiredRole="STUDENT" requireMonitor={true}>
-                  <div className="space-y-6">
-                    <h1 className="text-2xl font-bold">Monitor Panel</h1>
-                    <p className="text-muted-foreground">Monitor features coming soon...</p>
-                  </div>
-                </ProtectedRoute>
-              } /> */}
             </Route> 
             
             {/* Unauthorized page */}

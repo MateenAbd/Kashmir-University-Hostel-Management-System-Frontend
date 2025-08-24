@@ -154,18 +154,6 @@ const Login = () => {
             </div>
           </CardContent>
         </Card>
-
-        {/* Demo Credentials */}
-        <Card className="mt-4 border-warning/20 bg-warning-light/50">
-          <CardContent className="pt-4">
-            <p className="text-sm font-medium text-warning-foreground mb-2">Demo Credentials:</p>
-            <div className="space-y-1 text-xs text-warning-foreground/80">
-              <div>Admin: admin@hostel.com / admin123</div>
-              <div>Warden: warden@hostel.com / warden123</div>
-              <div>Student: student@hostel.com / student123</div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );

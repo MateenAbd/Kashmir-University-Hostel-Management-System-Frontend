@@ -18,11 +18,13 @@ import {
   Student
 } from '@/types';
 
+
 // Authentication API
 export const authApi = {
   login: (credentials: LoginRequest) => 
     apiClient.post<ApiResponse<LoginResponse>>('/api/auth/login', credentials),
 };
+
 
 // Student API
 export const studentApi = {
@@ -42,6 +44,7 @@ export const studentApi = {
   getDashboard: () =>
     apiClient.get<ApiResponse<StudentDashboardResponse>>('/api/students/dashboard'),
 };
+
 
 // Admin API
 export const adminApi = {
@@ -74,22 +77,22 @@ export const adminApi = {
     apiClient.post<ApiResponse<null>>(`/api/admin/deletion-request/${studentId}`, null, {
       params: { reason }
     }),
-   // Add searchStudents method with query param (optional)
-  // searchStudents: (query: string) =>
-  //   apiClient
-  //     .get<ApiResponse<Student[]>>('/api/admin/students', {
-  //       params: query ? { query } : {},
-  //     })
-  //     .then((res) => res.data.data || []),
+
 
   getStudentsWithSearch: (query: string) =>
     apiClient.get<ApiResponse<StudentListResponse[]>>("/api/admin/students", {
       params: query ? { query } : {},
     }),
 
+
   recordPayment: (data: PaymentRequest) =>
     apiClient.post<ApiResponse<null>>('/api/admin/payments', data),
+
+  // New method for fetching student photo as blob (handles auth for protected endpoint)
+  getStudentPhoto: (filename: string) =>
+    apiClient.get(`/api/admin/files/student-photo/${filename}`, { responseType: 'blob' }),
 };
+
 
 // Warden API
 export const wardenApi = {
@@ -132,6 +135,7 @@ export const wardenApi = {
   updateCutoffTime: (cutoffTime: string) =>
     apiClient.put<ApiResponse<null>>('/api/warden/settings/absence-cutoff-time', { cutoffTime }),
 };
+
 
 // Monitor API
 export const monitorApi = {
